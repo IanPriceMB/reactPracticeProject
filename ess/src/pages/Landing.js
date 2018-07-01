@@ -1,25 +1,21 @@
 import React from "react";
 import styled from 'styled-components';
 
-
-const Button = styled.button`
-  /* Adapt the colours based on primary prop */
-  background: ${props => props.primary ? 'palevioletred' : 'white'};
-  color: ${props => props.primary ? 'white' : 'palevioletred'};
-
-  font-size: ${props => props.other ? '1em' : '2em'};
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
+const Teaser = styled.section`
+  border-radius: 10px;
+  background: black;
+  border: white 1px solid;
+  position: relative;
+  top: ${props => props.top};
+  left: ${props => props.left};
+  height: ${props => props.height};
+  width: 300px;
 `;
 
 const Landing = () => (
     <div>
-    <Button>Normal</Button>
-    <Button primary other>Primary</Button>
-  </div>
+        <Teaser top={`100px`} left={`100px`} height={`300px`} />
+    </div>
 )
-export default Landing;
 
-//  
+export default Landing;
