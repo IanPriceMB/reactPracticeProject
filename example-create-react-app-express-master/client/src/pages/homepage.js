@@ -28,7 +28,7 @@ class Homepage extends Component {
           <a href='http://localhost:5000/auth/google'><span>Sign up</span></a>
         </header>
         <img src='#' alt='logo'/>
-        <a href='http://localhost:5000/auth/google'>
+        <a href='/auth/google'>
           <button> 
           Sign up
           </button>

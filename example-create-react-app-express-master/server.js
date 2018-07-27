@@ -28,18 +28,19 @@ app.use(passport.session());
 //connect to mongodb
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/esportsScoutingServices");
 
-app.use(authRoutes);
-app.use(apiRoutes);
 
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.use(express.static('client/build'));
 
   // Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
+  // app.get('*', function(req, res) {
+  //   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  // });
 }
+
+app.use(authRoutes);
+app.use(apiRoutes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -5,7 +5,7 @@ const passport = require('passport');
 router.get('/signout', (req, res) => {
     //handle with passport
     req.logout();
-    res.redirect('http://localhost:3000/')
+    res.redirect('/')
     console.log(req.headers)
 })
 
@@ -16,8 +16,7 @@ router.get('/google', passport.authenticate('google', {
 
 //callback route for google to redirect to
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.redirect('http://localhost:3000/signup/'+req.user.id)
-    console.log(req.headers)
+    res.redirect('signup/'+req.user.id)
 });
 
 module.exports = router;

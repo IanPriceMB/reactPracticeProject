@@ -7,7 +7,7 @@ export default {
   },
   // Gets the book with the given id
   getUser: function(id) {
-    return axios.get("/api/users/" + id);
+    return axios.get("http://localhost:5000/api/users/" + id);
   },
   // Saves a book to the database
   updateUser: function(userData) {
