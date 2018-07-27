@@ -1,46 +1,41 @@
-const express = require('express');
-const path = require('path');
-const apiRoutes = require("./routes-api");
-const authRoutes = require("./routes-auth");
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const apiRoutes = require("./api-routes");
+const authRoutes = require("./auth-routes");
 const passportSetup = require('./config/passport-setup')
-const mongoose = require('mongoose');
+const app = express();
 const keys = require('./config/keys')
 const cookieSession = require('cookie-session');
 const passport = require('passport')
-const bodyParser = require("body-parser");
+const PORT = process.env.PORT || 3001;
 
-const app = express();
-const port = process.env.PORT || 5000;
-
+// Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+//initialize passport 
+app.use(passport.initialize());
+app.use(passport.session());
 
+//for cookies 
 app.use(cookieSession({
   name: 'session',
   maxAge: 24*60*60*1000,
   keys: [keys.session.cookieKey]
 }))
 
-//initialize passport 
-app.use(passport.initialize());
-app.use(passport.session());
-
-//connect to mongodb
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/esportsScoutingServices");
-
-
-
-if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
-  app.use(express.static('client/build'));
-
-  // Handle React routing, return all requests to React app
-  // app.get('*', function(req, res) {
-  //   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  // });
-}
-
+// Add routes, both API and view
 app.use(authRoutes);
 app.use(apiRoutes);
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/esportsScoutingServices");
+
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});

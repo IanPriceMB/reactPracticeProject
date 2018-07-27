@@ -16,7 +16,7 @@ passport.deserializeUser((id, done)=> {
 passport.use(
     new GoogleStrategy({
         //options for the strategy
-        callbackURL: 'http://localhost:5000/auth/google/redirect',
+        callbackURL: 'http://localhost:3001/auth/passport/google/redirect',
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret
     }, (accessToken, refreshToken, profile, done) => {
@@ -30,7 +30,8 @@ passport.use(
             } else {
                 //if not, create user in our db
                 new User({
-                    username: profile.displayName,
+                    firstName: profile.name.givenName,
+                    lastName: profile.name.familyName,
                     googleId: profile.id
                 }).save().then((newUser) => {
                     console.log('new user created: ' + newUser);
