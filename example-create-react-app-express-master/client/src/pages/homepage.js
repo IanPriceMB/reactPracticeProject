@@ -38,12 +38,13 @@ class Homepage extends Component {
   state = {
     users: [],
     name: "",
-    googleId: ""
+    id: '',
+    googleId: "",
+    redirectToReferrer: false
   };
 
   responseGoogle = (response) => {
     console.log(response)
-    // if()
     this.signUp(response)
   }
   signUp = (res) => {
@@ -56,7 +57,7 @@ class Homepage extends Component {
       }).then((User) => {
         console.log(User.data)
         console.log('user is: ' + User.config.data);
-        this.setState({ id: User.data._id, payed: User.data.payed, type: User.data.type })
+        this.setState({ id: User.data._id, redirectToReferrer: true })
       })
       .catch(err => console.log(err));   
     }
@@ -64,12 +65,20 @@ class Homepage extends Component {
 
 render() {
   if(this.state.redirectToReferrer){
-    return (<Redirect to={'/home'} />)
+    return (<Redirect to={'/signup/'+this.state.id} />)
   }
     return (
       <div>
         <header style={styles.header}>
-          <Link to={'/signup'}>Sign in</Link>
+        <span style={styles.span}>
+            <GoogleLogin
+              clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
+              buttonText="Sign in"
+              style={styles.button}
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+            />
+          </span>
           <span style={styles.span}>
             <GoogleLogin
               clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
