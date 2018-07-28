@@ -87,7 +87,7 @@ class Profile extends Component {
             firstName: this.state.user.firstName,
             lastName:  this.state.user.lastName,
             heroesOfTheStorm:  this.state.user.heroesOfTheStorm,
-            gamerTag:  this.state.user. gamerTag,
+            gamerTag:  this.state.user.gamerTag,
             rank:  this.state.user.rank,
             heroesOfTheStormPrimary:  this.state.user.heroesOfTheStormPrimary,
             heroesOfTheStormSecondary:  this.state.user.heroesOfTheStormSecondary,

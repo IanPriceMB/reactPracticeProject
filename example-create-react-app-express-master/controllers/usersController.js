@@ -35,12 +35,17 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   createUser: function(req, res) {
-    console.log(req.body)
-    console.log('---------------------------------------------------------------------')
-    db.User
-    .create(req.body)
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
-
+    db.User.count({googleId: req.body.googleId}, function (err, count){
+      console.log(count)
+      if(count){
+        console.log('user already exists ' +  req.body.email)
+      }else{
+        console.log('---------------------------------------------------------------------')
+        db.User
+        .create(req.body)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+      }
+    })
   }
 };
