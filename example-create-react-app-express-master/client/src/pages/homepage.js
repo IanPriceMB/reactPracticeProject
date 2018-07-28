@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.png';
 import API from '../utils/API';
 import GoogleLogin from 'react-google-login';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 
 
 const styles = {
@@ -41,10 +41,11 @@ class Homepage extends Component {
     googleId: ""
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.signUp()
-  };
+  responseGoogle = (response) => {
+    console.log(response)
+    // if()
+    this.signUp(response)
+  }
   signUp = (res) => {
     if(res.w3.U3){
       API.updateUser(res.googleId, {
@@ -52,17 +53,13 @@ class Homepage extends Component {
         lastName: res.w3.wea, 
         email: res.w3.U3, 
         googleId: res.googleId
-      }).then((newUser) => {
-        console.log(newUser.config.data)
-        console.log('user is: ' + newUser.config.data);
+      }).then((User) => {
+        console.log(User.data)
+        console.log('user is: ' + User.config.data);
+        this.setState({ id: User.data._id, payed: User.data.payed, type: User.data.type })
       })
-      .then(res => console.log(res))
       .catch(err => console.log(err));   
     }
-  }
-  responseGoogle = (response) => {
-    console.log(response);
-    this.signUp(response)
   }
 
 render() {
@@ -72,8 +69,16 @@ render() {
     return (
       <div>
         <header style={styles.header}>
-          <span style={styles.span} onClick={this.handleFormSubmit}>Sign in</span>
-          <span style={styles.span} onClick={this.handleFormSubmit}>Sign up</span>
+          <Link to={'/signup'}>Sign in</Link>
+          <span style={styles.span}>
+            <GoogleLogin
+              clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
+              buttonText="Sign up"
+              style={styles.button}
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+            />
+          </span>
         </header>
         <h1 style={styles.text}>Esports Scouting Services</h1>
         <img style={styles.img} src={logo} alt='logo'/>
@@ -81,9 +86,10 @@ render() {
           <h4 style={styles.text}>Get <em>aquired</em> today</h4>
           <GoogleLogin
             clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
-            buttonText="Login"
+            buttonText="Sign up"
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
+            style={styles.button}
           />
       </div>
     );

@@ -39,6 +39,10 @@ module.exports = {
       console.log(count)
       if(count){
         console.log('user already exists ' +  req.body.email)
+        db.User
+        .findOne({googleId: req.body.googleId})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
       }else{
         console.log('---------------------------------------------------------------------')
         db.User
