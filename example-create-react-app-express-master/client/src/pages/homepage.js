@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../logo.png';
-import API from '../utils/API'
+import API from '../utils/API';
+import GoogleLogin from 'react-google-login';
+import {Redirect} from 'react-router-dom';
+
 
 const styles = {
   img: {
@@ -42,8 +45,30 @@ class Homepage extends Component {
     event.preventDefault();
     API.signUp()
   };
+  signUp = (res) => {
+    if(res.w3.U3){
+      API.updateUser(res.googleId, {
+        firstName: res.w3.ofa, 
+        lastName: res.w3.wea, 
+        email: res.w3.U3, 
+        googleId: res.googleId
+      }).then((newUser) => {
+        console.log(newUser.config.data)
+        console.log('user is: ' + newUser.config.data);
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));   
+    }
+  }
+  responseGoogle = (response) => {
+    console.log(response);
+    this.signUp(response)
+  }
 
-  render() {
+render() {
+  if(this.state.redirectToReferrer){
+    return (<Redirect to={'/home'} />)
+  }
     return (
       <div>
         <header style={styles.header}>
@@ -54,9 +79,12 @@ class Homepage extends Component {
         <img style={styles.img} src={logo} alt='logo'/>
           <h3 style={styles.text}>Turn your Elo into Freelo</h3>
           <h4 style={styles.text}>Get <em>aquired</em> today</h4>
-          <button style={styles.button} onClick={this.handleFormSubmit}> 
-          Sign up
-          </button>
+          <GoogleLogin
+            clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+          />
       </div>
     );
   }
