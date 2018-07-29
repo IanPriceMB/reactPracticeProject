@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../logo.png';
 import API from '../utils/API';
-import GoogleLogin from 'react-google-login';
+import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {Redirect, Link} from 'react-router-dom';
 
 
@@ -49,7 +49,7 @@ class Homepage extends Component {
   }
   signUp = (res) => {
     if(res.w3.U3){
-      API.updateUser(res.googleId, {
+      API.createUser(res.googleId, {
         firstName: res.w3.ofa, 
         lastName: res.w3.wea, 
         email: res.w3.U3, 
@@ -58,6 +58,7 @@ class Homepage extends Component {
         console.log(User.data)
         console.log('user is: ' + User.config.data);
         this.setState({ id: User.data._id, redirectToReferrer: true })
+        
       })
       .catch(err => console.log(err));   
     }

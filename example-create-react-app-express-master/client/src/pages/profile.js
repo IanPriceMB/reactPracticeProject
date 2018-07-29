@@ -312,12 +312,12 @@ class Profile extends Component {
               </ul>) : ( <h3>No Results to Display</h3>)}
             </div>) : (
           <div>
-            nothing for you!
+
           </div>
         )}
-        {/* <button onClick={() => this.pressMe()}> 
+        <button onClick={() => this.pressMe()}> 
           press me
-        </button> */}
+        </button>
       </div>
     );
   }

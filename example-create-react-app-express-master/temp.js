@@ -1,28 +1,14 @@
-const mongoose = require("mongoose");
-const db = require("../models/user-model");
-mongoose.Promise = global.Promise;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-// This file empties the Books collection and inserts the books below
-
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/esportsScoutingServices",
-  {
-    useMongoClient: true
-  }
-);
-
-const bookSeed = [
-  {
+const userSchema = new Schema({
     // player
-    firstName: 'Bob',
-    lastName: 'Tucker',
-    email: 'bobtucker1@gmail.com',
-    age: 45,
-    city: 'Louisville',
-    state: 'KY',
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: {type: String, required: true},
     games: {
         heroesOfTheStorm: {type: Boolean, default: false, info: {
-            gamerTag: 'MasterWarlock',
+            gamerTag: { type: String, default: '' },
             rank: { type: String, default: '' },
             primary: { type: String, default: '' },
             secondary: { type: String, default: '' }
@@ -119,21 +105,30 @@ const bookSeed = [
             secondary: { type: String, default: '' },
         }},
     },
+    
+    gamerTag: { type: String, default: '' },
+    rank: { type: String, default: '' },
+    primary: { type: String, default: '' },
+    secondary: { type: String, default: '' },
+    age: { type: Number, default: '' },
+    city: { type: String, default: '' },
+    state: { type: String, default: '' },
+    //university
+    schoolName: { type: String, default: '' },
+    scoutName: { type: String, default: '' },
+    coach: { type: String, default: '' },
+    heroesOfTheStormOffered: {type: Boolean, default: false},
+    overwatchOffered: {type: Boolean, default: false},
+    leagueOfLegendsOffered: {type: Boolean, default: false},
+    schoolCity: { type: String, default: '' },
+    schoolState: { type: String, default: '' },
     //various infos
     googleId: { type: String, required: true },
+    payed: {type: Boolean, default: false},
     type: { type: String, default: '' },
     date: { type: Date, default: Date.now }
-},
-];
+});
 
-db.Book
-  .remove({})
-  .then(() => db.User.collection.insertMany(userSeed))
-  .then(data => {
-    console.log(data.insertedIds.length + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+const User = mongoose.model('User', userSchema)
+
+module.exports = User;

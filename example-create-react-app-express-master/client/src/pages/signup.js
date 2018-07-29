@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import API from "../utils/API";
 import {
-Link,
+Link
 } from 'react-router-dom';
+
 
 const styles = {
   img: {
@@ -41,9 +42,9 @@ class Signup extends Component {
   }
 
   componentDidMount() {
-    this.changeState(this.props.match.params.id);
+    this.startState(this.props.match.params.id);
   };
-  changeState = id => {
+  startState = id => {
     API.getUser(id)
       .then(res =>{
         this.setState({ id: res.data._id, payed: res.data.payed, type: res.data.type })
@@ -69,11 +70,6 @@ class Signup extends Component {
     this.setState({
       payed: true
     })
-  }
-  signOut = () => {
-    API.signOut()
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
   };
   pressMe = () => {
     console.log(this.state)
@@ -83,7 +79,8 @@ class Signup extends Component {
     return (
       <div>
         <header style={styles.header}>
-          <span style={styles.span} onClick={this.signOut}>Sign out</span>
+          <span style={styles.span}>logout
+    </span>
         </header>
         <h1 style={styles.text}>Esports Scouting Services</h1>
         {this.state.id && !this.state.payed && this.state.type === '' ? (
@@ -110,12 +107,11 @@ class Signup extends Component {
           </Link>) : 
         (
           <div>
-            nothing for you!
           </div>
         )}
-        {/* <button onClick={() => this.pressMe()}> 
+        <button onClick={() => this.pressMe()}> 
           press me
-        </button> */}
+        </button>
       </div>
     );
   }

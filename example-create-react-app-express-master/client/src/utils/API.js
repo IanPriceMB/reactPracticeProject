@@ -14,6 +14,9 @@ export default {
   },
   // Saves a book to the database
   updateUser: function(id, userData) {
+    return axios.put("/api/users/" + id, userData);
+  },
+  createUser: function(id, userData){
     return axios.post("/api/users/" + id, userData);
   }
 };
