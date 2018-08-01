@@ -380,7 +380,7 @@ class Profile extends Component {
           <li class='col-12 container' key={j}>
             <h1>
               <strong>
-                {discovered.schoolName}: {discovered.SchoolCity}, {discovered.schoolState} <br />
+                {discovered.SchoolName}: {discovered.SchoolCity}, {discovered.SchoolState} <br />
               </strong>
             </h1>
             <span class='col-4'>Head coach: {discovered.Coach}</span> 
@@ -390,17 +390,11 @@ class Profile extends Component {
               <div class='row'>
               <ul style={styles.ul} class='col-12 container'>
               <div class='row'>
-                {Object.keys(discovered.games).map(game => (
-                  <li class='col-4' key={game}>
-                    {game.gamerTag !== '' ? (
-                      <ul style={styles.ul}>
-                        <h3>{game}</h3>
-                        {Object.keys(discovered.games[game]).map((option, i) => (
-                          <li key={i}>{option}: {discovered.games[game][option]}</li>
-                        ))}
-                      </ul>
-                    ):(<div></div>)}
-                  </li>))}
+                {Object.keys(discovered.offeredGames).map(game => {        
+                  if(discovered.offeredGames[game] === true){
+                    return <li class='col-4' key={game}><h3>{game}</h3></li>
+                  }
+              })}
               </div>
               </ul>
               </div>
@@ -415,7 +409,7 @@ class Profile extends Component {
       ) :
       this.state.user._id === this.props.match.params.id && this.state.user.type === 'university' && this.state.location==='discover' ? (
       <div>
-        <button class='btn btn-info' type='submit' onClick={this.discoverPlayers}>Discover</button>
+        <button class='btn btn-info' type='submit' onClick={this.discoverUniversities}>Discover</button>
       <div class='container'>
       <div class='row'>
       {this.state.discovers.length ? (
@@ -459,9 +453,9 @@ class Profile extends Component {
       </div>
       )
       :(<div> log in to see this page</div>)}
- <button onClick={() => this.pressMe()}> 
+ {/* <button onClick={() => this.pressMe()}> 
    press me
- </button>
+ </button> */}
 
       </div>
     );
