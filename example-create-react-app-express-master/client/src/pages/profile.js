@@ -1,66 +1,16 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
 import logo from '../logo.png';
+import {Link} from 'react-router-dom'
+
 
 const styles = {
     img: {
         maxWidth: 100,
         margin: '0 auto',
         display: 'block'
-    }, 
-    header: {
-        width: '100%',
-        float: 'left'
-    }, 
-    signout: {
-        padding: 5, 
-        float: 'right'
-    },
-    span: {
-        padding: 5, 
-        float: 'left'
-    },
-    button: {
-        backgroundColor: 'blue', 
-        padding: "5 10",
-        color: 'white',
-        border: 'none',
-        margin: '0px 10px',
-        fontSize: '1em'
-    }, 
-    button2: {
-        display: 'block',
-        backgroundColor: 'blue', 
-        borderRadius: 10,
-        padding: '10px 30px',
-        color: 'white',
-        border: 'none',
-        margin: '30px',
-        fontSize: '2em'
-      }, 
-    text: {
-        textAlign: 'center',
-    },
-    nav: {
-        width: '10%',
-        height: '5000px',
-        float: 'left'
-    },
-    form: {
-        float: 'left',
-        display: 'block',
-        margin: '40px 0px',
-        paddingLeft: '30%',
-        fontSize: '1.5em'
-    },
-    discovered: {
-        float: 'left',
-        display: 'block',
-        margin: '40px 0px',
-        paddingLeft: '10%',
-        fontSize: '1.5em'
-    },
-}
+    }
+  }
 
 class Profile extends Component {
   state = {
@@ -86,14 +36,102 @@ class Profile extends Component {
         API.updateUser( this.state.user._id, {
             firstName: this.state.user.firstName,
             lastName:  this.state.user.lastName,
-            heroesOfTheStorm:  this.state.user.heroesOfTheStorm,
-            gamerTag:  this.state.user.gamerTag,
-            rank:  this.state.user.rank,
-            heroesOfTheStormPrimary:  this.state.user.heroesOfTheStormPrimary,
-            heroesOfTheStormSecondary:  this.state.user.heroesOfTheStormSecondary,
+            email:  this.state.user.heroesOfTheStorm,
             age:  this.state.user.age,
             city:  this.state.user.city,
-            state:  this.state.user.state
+            state:  this.state.user.state,
+            games: {
+              HeroesOfTheStorm: {
+                  GamerTag: this.state.user.games.HeroesOfTheStorm.GamerTag,
+                  Rank: this.state.user.games.HeroesOfTheStorm.Rank,
+                  Primary: this.state.user.games.HeroesOfTheStorm.Primary,
+                  Secondary: this.state.user.games.HeroesOfTheStorm.Secondary
+              },
+              Overwatch: {
+                GamerTag: this.state.user.games.Overwatch.GamerTag,
+                Rank: this.state.user.games.Overwatch.Rank,
+                Primary: this.state.user.games.Overwatch.Primary,
+                Secondary: this.state.user.games.Overwatch.Secondary
+              },
+              Fortnite: {
+                GamerTag: this.state.user.games.Fortnite.GamerTag,
+                Rank: this.state.user.games.Fortnite.Rank,
+              },
+              PUBG: {
+                GamerTag: this.state.user.games.PUBG.GamerTag,
+                Rank: this.state.user.games.PUBG.Rank,
+              },
+              WorldOfWarcraft: {
+                GamerTag: this.state.user.games.WorldOfWarcraft.GamerTag,
+                Rank: this.state.user.games.WorldOfWarcraft.Rank,
+                Primary: this.state.user.games.WorldOfWarcraft.Primary,
+                Secondary: this.state.user.games.WorldOfWarcraft.Secondary
+              },
+              DOTA2: {
+                GamerTag: this.state.user.games.DOTA2.GamerTag,
+                Rank: this.state.user.games.DOTA2.Rank,
+                Primary: this.state.user.games.DOTA2.Primary,
+                Secondary: this.state.user.games.DOTA2.Secondary
+              },
+              LeagueOfLegends: {
+                GamerTag: this.state.user.games.LeagueOfLegends.GamerTag,
+                Rank: this.state.user.games.LeagueOfLegends.Rank,
+                Primary: this.state.user.games.LeagueOfLegends.Primary,
+                Secondary: this.state.user.games.LeagueOfLegends.Secondary
+              },
+              CounterStrike: {
+                GamerTag: this.state.user.games.CounterStrike.GamerTag,
+                Rank: this.state.user.games.CounterStrike.Rank,
+                WeaponPreference: this.state.user.games.CounterStrike.WeaponPreference,
+                Role: this.state.user.games.CounterStrike.Role
+              },
+              Starcraft2: {
+                GamerTag: this.state.user.games.Starcraft2.GamerTag,
+                Rank: this.state.user.games.Starcraft2.Rank,
+                PrimaryRace: this.state.user.games.Starcraft2.PrimaryRace,
+                SecondaryRace: this.state.user.games.Starcraft2.SecondaryRace
+              },
+              HearthStone: {
+                GamerTag: this.state.user.games.HearthStone.GamerTag,
+                Rank: this.state.user.games.HearthStone.Rank,
+                PreferedClasses: this.state.user.games.HearthStone.PreferedClasses
+              },
+              SuperSmashBros: {
+                GamerTag: this.state.user.games.SuperSmashBros.GamerTag,
+                Rank: this.state.user.games.SuperSmashBros.Rank,
+                Primary: this.state.user.games.SuperSmashBros.Primary,
+                Secondary: this.state.user.games.SuperSmashBros.Secondary
+              },
+              StreetFighter: {
+                GamerTag: this.state.user.games.StreetFighter.GamerTag,
+                Rank: this.state.user.games.StreetFighter.Rank,
+                Primary: this.state.user.games.StreetFighter.Primary,
+                Secondary: this.state.user.games.StreetFighter.Secondary
+              },
+              Halo: {
+                GamerTag: this.state.user.games.Halo.GamerTag,
+                Rank: this.state.user.games.Halo.Rank
+              },
+              Rainbow6: {
+                GamerTag: this.state.user.games.Rainbow6.GamerTag,
+                Rank: this.state.user.games.Rainbow6.Rank,
+              },
+              MagicTheGathering: {
+                GamerTag: this.state.user.games.MagicTheGathering.GamerTag,
+                Rank: this.state.user.games.MagicTheGathering.Rank,
+              },
+              Smite: {
+                GamerTag: this.state.user.games.Smite.GamerTag,
+                Rank: this.state.user.games.Smite.Rank,
+                Primary: this.state.user.games.Smite.Primary,
+                Secondary: this.state.user.games.Smite.Secondary
+              },
+              Warcraft3: {
+                GamerTag: this.state.user.games.Warcraft3.GamerTag,
+                Rank: this.state.user.games.Warcraft3.Rank,
+                PrimaryRace: this.state.user.games.Warcraft3.PrimaryRace 
+              }
+          } 
         })
         .then(res => console.log(res))
         .catch(err => console.log(err));
@@ -118,10 +156,16 @@ class Profile extends Component {
   };
   handleInputChange = event => {
     const { name, value } = event.target;
+    console.log(name)
     let user = {...this.state.user}
     user[name] = value
-    this.setState({user
-    });
+    this.setState({user});
+  };
+  handleInputChangeGame = event => {
+    const { name, value, id } = event.target;
+    let games = {...this.state.user.games}
+    games[id][name] = value
+    this.setState({games});
   };
   pressMe = () => {
     console.log(this.state)
@@ -144,180 +188,78 @@ class Profile extends Component {
       .then(res => this.setState({discovers: res.data}))
       .catch(err => console.log(err));
 }
-  signOut = () => {
-    API.signOut()
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-  };
 
   render() {
     return (
-        <div>
-        <header style={styles.header}>
-          <span style={styles.signout} onClick={this.signOut}>Sign out</span>
-        </header>
-        <h1 style={styles.text}>Esports Scouting Services</h1>
-            <nav style={styles.nav}>
-                <ul>
-                    <li style={styles.span} onClick={() => this.locationHandler('profile')}>Profile</li>
-                    <li style={styles.span} onClick={() => this.locationHandler('discover')}>Discover</li>
-                </ul>
-                <img style={styles.img} src={logo} alt='logo'/>
-            </nav>
-        {this.state.user._id === this.props.match.params.id && this.state.user.type === 'player' && this.state.location==='profile' ? (
-        <div>
-            <main style={styles.form}>
-                <form >
-                    First name:<br />
-                    <input type='text'  name="firstName" defaultValue={this.state.user.firstName}
-                    onChange={this.handleInputChange}/>
-                <br />
-                Last name:<br />
-                <input  name="lastName" defaultValue={this.state.user.lastName}
-                  onChange={this.handleInputChange} />
-                <br />
-                Heroes of the Storm:<br />
-                <button style={styles.button} type='button' onClick={() => this.trueFalse('heroesOfTheStorm', true)}>Yes</button>
-                <button style={styles.button} type='button' onClick={() => this.trueFalse('heroesOfTheStorm', false)}>No</button>
-                <br />
-                Gamer Tag:<br />
-                <input  name="gamerTag" defaultValue={this.state.user.gamerTag}
-                  onChange={this.handleInputChange} />
-                  {this.state.user.heroesOfTheStorm ? (
-                    <div >
-                    Primary Heroes of the Storm Role:<br />
-                    <input  name="heroesOfTheStormPrimary" defaultValue={this.state.user.heroesOfTheStormPrimary}
-                       onChange={this.handleInputChange}/>
-                    <br />
-                    Secondary Heroes of the Storm Role:<br />
-                    <input  name="heroesOfTheStormSecondary" defaultValue={this.state.user.heroesOfTheStormSecondary}
-                       onChange={this.handleInputChange}/>
-                    <br />
-                    </div>
-                ):(<div></div>)}
-                Rank:<br />
-                <input  name="rank" defaultValue={this.state.user.rank}
-                   onChange={this.handleInputChange}/>
-                <br />
-                Age:<br />
-                <input  name="age" defaultValue={this.state.user.age}
-                   onChange={this.handleInputChange}/>
-                <br />
-                City:<br />
-                <input  name="city" defaultValue={this.state.user.city}
-                   onChange={this.handleInputChange}/>
-                <br />
-                State:<br />
-                <input  name="state" defaultValue={this.state.user.state}
-                   onChange={this.handleInputChange}/>
-                <button style={styles.button2} type='submit' onClick={this.handlePlayerFormSubmit}>Update</button>
-                </form>
-            </main>
-        </div>
-        ) : 
-        this.state.user._id === this.props.match.params.id && this.state.user.type === 'university' && this.state.location==='profile' ?(
-        <div>
-            <main style={styles.form}>
-                <form >
-                School Name:<br />
-                <input type='text'  name="schoolName" defaultValue={this.state.user.schoolName}
-                   onChange={this.handleInputChange}/>
-                <br />
-                Head Coach:<br />
-                <input  name="coach" defaultValue={this.state.user.coach}
-                  onChange={this.handleInputChange} />
-                  <br />
-                Head Scout:<br />
-                <input  name="scoutName" defaultValue={this.state.user.scoutName}
-                  onChange={this.handleInputChange} />
-                <br />
-                Heroes of the Storm:<br />
-                <button style={styles.button} type='button' onClick={() => this.trueFalse('heroesOfTheStormOffered', true)}>yes</button>
-                <button style={styles.button} type='button' onClick={() =>this.trueFalse('heroesOfTheStormOffered', false)}>no</button>
-                <br />
-                Overwatch:<br />
-                <button style={styles.button} type='button' onClick={() => this.trueFalse('overwatchOffered', true)}>yes</button>
-                <button style={styles.button} type='button' onClick={() =>this.trueFalse('overwatchOffered', false)}>no</button>
-                <br /> 
-                League of Legends:<br />
-                <button style={styles.button} type='button' onClick={() => this.trueFalse('leagueOfLegendsOffered', true)}>yes</button>
-                <button style={styles.button} type='button' onClick={() =>this.trueFalse('leagueOfLegendsOffered', false)}>no</button>
-                <br /> 
-                City:<br />
-                <input  name="schoolCity" defaultValue={this.state.user.schoolCity}
-                   onChange={this.handleInputChange}/>
-                <br />
-                State:<br />
-                <input  name="schoolState" defaultValue={this.state.user.schoolState}
-                   onChange={this.handleInputChange}/>
-                <br />
-                <br />
-                <button style={styles.button2} type='submit' onClick={this.handleUniversityFormSubmit}>Update</button>
-                </form>
-            </main>
-        </div>
-        ) : 
-        this.state.user._id === this.props.match.params.id && this.state.user.type === 'player' && this.state.location==='discover' ? (
-        <div>
-            <button style={styles.button} type='submit' onClick={this.discoverUniversities}>Discover</button>
-            {this.state.discovers.length ? (<ul>
-                {this.state.discovers.map(discovered => (
-                    
-                  <li style={styles.discovered} key={discovered._id}>
-                    <h1>
-                      <strong>
-                        {discovered.schoolName} - {discovered.schoolCity}, {discovered.schoolState} <br />
-                      </strong>
-                    </h1>
-                      <h3>Esports available on campus</h3>
-                      <ul>
-                          {discovered.overwatchOffered ? (<li>Overwatch</li>):(<div></div>)}
-                          {discovered.heroesOfTheStormOffered ? (<li>Hero of the Storm</li>):(<div></div>)}
-                          {discovered.leagueOfLegendsOffered ? (<li>League of Legends</li>):(<div></div>)}
-                      </ul>
-                      <br />
-                      <span>Head Coach: {discovered.coach}</span> <br />
-                      <span>Head Scout: {discovered.scoutName}</span>
-                  </li>
-                ))}
-              </ul>) : ( <h3>No Results to Display</h3>)}
-        </div>
-        ) :
-        this.state.user._id === this.props.match.params.id && this.state.user.type === 'university' && this.state.location==='discover' ? (
-            <div>
-            <button style={styles.button} type='submit' onClick={this.discoverPlayers}>Discover</button>
-            {this.state.discovers.length ? (<ul>
-                {this.state.discovers.map(discovered => (
-                    
-                  <li style={styles.discovered} key={discovered._id}>
-                    <h1>
-                      <strong>
-                        {discovered.firstName} "{discovered.gamerTag}" {discovered.lastName} <br />
-                      </strong>
-                    </h1>
-                      <h3>Games Played</h3>
-                      <ul>
-                          {discovered.heroesOfTheStorm ? (
-                            <div>
-                                <div>Primary Role: {discovered.heroesOfTheStormPrimary}</div>
-                                <div>Secondary Role: {discovered.heroesOfTheStormSecondary}</div>
-                          </div>):(<div></div>)}
-                      </ul>
-                      <br />
-                      <span>Age: {discovered.age}</span> <br />
-                      <span>City: {discovered.city}</span> <br />
-                      <span>State: {discovered.state}</span>
-                  </li>
-                ))}
-              </ul>) : ( <h3>No Results to Display</h3>)}
-            </div>) : (
-          <div>
-
-          </div>
-        )}
-        <button onClick={() => this.pressMe()}> 
-          press me
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Esports Scouting Services</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" >
+          <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" onClick={() => this.locationHandler('profile')} >Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onClick={() => this.locationHandler('Discover')} >Discover</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+           Sign out
+          </span>
+        </div>
+      </nav>
+      {this.state.user.games ? (
+      <form class='container'>
+        <div class='row'>
+        <div class="form-group col-2">
+          <label for="firstName">First Name</label>
+          <input onChange={this.handleInputChange} type="input" class="form-control" name='firstName' id="firstName" placeholder="John" />
+        </div>
+        <div class="form-group col-2">
+          <label for="LastName">Last Name</label>
+          <input onChange={this.handleInputChange} type="input" class="form-control" name='lastName' id="LastName" placeholder="Doe" />
+        </div>
+        <div class="form-group col-2">
+          <label for="Age">Age</label>
+          <input onChange={this.handleInputChange} type="input" class="form-control" name='age' id="Age" placeholder="17" />
+        </div>
+        <div class="form-group col-2">
+          <label for="Email">Email</label>
+          <input onChange={this.handleInputChange} type="email" class="form-control" name='email' id="Email" placeholder="example@example.com" />
+        </div>
+        <div class="form-group col-2">
+          <label for="State">State</label>
+          <input onChange={this.handleInputChange} type="input" class="form-control" name='state' id="State" placeholder="CO" />
+        </div>
+        <div class="form-group col-2">
+          <label for="City">City</label>
+          <input onChange={this.handleInputChange} type="input" class="form-control" name='city' id="City" placeholder="Denver" />
+        </div>
+        </div>
+        <div class='row'>
+          {Object.keys(this.state.user.games).map((game, i) => (
+            <div key={game} class="col-3">
+            <div class='form-group'>
+            <h3> {game.split(/(?=[A-Z])/)} </h3>
+              {Object.keys(this.state.user.games[game]).map((option, i) => (
+                <div key={i}>
+                  <label for={option}>{option.split(/(?=[A-Z])/)}</label>
+                  <input type="input" class="form-control" id={game} name={option} onChange={this.handleInputChangeGame} defaultValue={this.state.user.games[game][option]}/>
+                </div>
+              ))}
+            </div>
+            </div>
+          ))}
+        </div>
+        <button onClick={this.handlePlayerFormSubmit} type="submit" class="btn btn-primary">Submit</button>
+      </form>):(<div> log in to see this page</div>)}
+ <button onClick={() => this.pressMe()}> 
+   press me
+ </button>
+
       </div>
     );
   }

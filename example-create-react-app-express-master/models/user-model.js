@@ -10,102 +10,95 @@ const userSchema = new Schema({
     city: { type: String, default: '' },
     state: { type: String, default: '' },
     games: {
-        heroesOfTheStorm: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' }
+        HeroesOfTheStorm: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' }
         },
-        overwatch: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' }
+        Overwatch: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' }
         },
-        fortnite: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' }
+        Fortnite: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' }
         },
-        pubg: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' }
+        PUBG: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' }
         },
-        worldOfWarcraft: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' }
+        WorldOfWarcraft: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' }
         },
         DOTA2: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' }
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' }
         },
-        leagueOfLegends: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' }
+        LeagueOfLegends: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' }
         },
-        counterStrike: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            weaponPref: { type: String, default: '' },
-            role: { type: String, default: '' }
+        CounterStrike: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            WeaponPreference: { type: String, default: '' },
+            Role: { type: String, default: '' }
         },
-        starcraft2: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primaryRace: { type: String, default: '' },
-            secondaryRace: { type: String, default: '' }
+        Starcraft2: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            PrimaryRace: { type: String, default: '' },
+            SecondaryRace: { type: String, default: '' }
         },
-        hearthStone: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            prefs: { type: Array, default: []}
+        HearthStone: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            PreferedClasses: { type: Array, default: []}
         },
-        smashBros: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' },
+        SuperSmashBros: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' },
         },
-        streetFighter: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' },
+        StreetFighter: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' },
         },
-        halo: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' },
+        Halo: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' }
         },
-        rainbow6: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' },
+        Rainbow6: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' }
         },
-        magic: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' },
+        MagicTheGathering: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' }
         },
-        smite: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' },
+        Smite: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            Primary: { type: String, default: '' },
+            Secondary: { type: String, default: '' },
         },
-        warcraft3: {
-            gamerTag: { type: String, default: '' },
-            rank: { type: String, default: '' },
-            primary: { type: String, default: '' },
-            secondary: { type: String, default: '' },
+        Warcraft3: {
+            GamerTag: { type: String, default: '' },
+            Rank: { type: String, default: '' },
+            PrimaryRace: { type: String, default: '' }
         }
     },
     //university

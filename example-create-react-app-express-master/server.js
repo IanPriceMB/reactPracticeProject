@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(apiRoutes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/esportsScoutingServices");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/esportsScoutingServices",{ useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {

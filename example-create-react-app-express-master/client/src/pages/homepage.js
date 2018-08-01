@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../logo.png';
 import API from '../utils/API';
-import {GoogleLogin, GoogleLogout} from 'react-google-login';
-import {Redirect, Link} from 'react-router-dom';
+import {GoogleLogin} from 'react-google-login';
+import {Redirect} from 'react-router-dom';
 
 
 const styles = {
@@ -21,13 +21,19 @@ const styles = {
   },
   button: {
     display: 'block',
-    backgroundColor: 'blue', 
-    borderRadius: 10,
-    padding: '15px 30px',
+    backgroundColor: 'black',
+    color: 'white',
+    border: 'none'
+  }, 
+  buttonMajor: {
+    display: 'block',
+    backgroundColor: 'blue',
     color: 'white',
     border: 'none',
-    margin: '30px auto',
-    fontSize: '2em'
+    borderRadius: '10px',
+      height: 100,
+      width: 300,
+      fontSize: '2em'
   }, 
   text: {
     textAlign: 'center',
@@ -70,38 +76,73 @@ render() {
   }
     return (
       <div>
-        <header style={styles.header}>
-        <span style={styles.span}>
-            <GoogleLogin
-              clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
-              buttonText="Sign in"
-              style={styles.button}
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-            />
-          </span>
-          <span style={styles.span}>
-            <GoogleLogin
-              clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
-              buttonText="Sign up"
-              style={styles.button}
-              onSuccess={this.responseGoogle}
-              onFailure={this.responseGoogle}
-            />
-          </span>
+        <header class='container-fluid'>
+          <div class='row'>
+            <div class='col-lg-9' />
+            <div class='col-lg-1'>
+              <GoogleLogin
+                clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
+                buttonText="Sign in"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                style={styles.button}
+              />
+            </div>
+            <div class='col-lg-1'>
+              <GoogleLogin
+                clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
+                buttonText="Sign up"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                style={styles.button}
+              />
+            </div>
+          </div>
         </header>
-        <h1 style={styles.text}>Esports Scouting Services</h1>
-        <img style={styles.img} src={logo} alt='logo'/>
-          <h3 style={styles.text}>Turn your Elo into Freelo</h3>
-          <h4 style={styles.text}>Get <em>aquired</em> today</h4>
-          <GoogleLogin
-            clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
-            buttonText="Sign up"
-            onSuccess={this.responseGoogle}
-            onFailure={this.responseGoogle}
-            style={styles.button}
-          />
+      <div class='container-fluid'>
+        <div class='row justify-content-center'>
+          <h1>Esports Scouting Services</h1>
+        </div>
       </div>
+      <div class='container-fluid'>
+        <div class='row'>
+          <div class="col-lg-3 container">
+            <div class='row'>
+              <div class="col-lg-12">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 container">
+            <div class='row justify-content-center'>
+              <div>
+                <img style={styles.img} src={logo} alt='logo'/>
+              </div>
+            </div>
+            <div class='row justify-content-center'>
+              <h3>Turn your Elo into Freelo</h3>
+            </div>
+            <div class='row justify-content-center'>
+              <h4>Get <em>aquired</em> today</h4>
+            </div>
+            <div class='row justify-content-center'>
+              <GoogleLogin
+                clientId="897176640937-age1bq70pspnr6e64ouunmegbh8urv88.apps.googleusercontent.com"
+                buttonText="Sign up"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                style={styles.buttonMajor}
+              />
+            </div>
+          </div>
+          <div class="col-lg-3 container">
+            <div class='row'>
+                <div class="col-lg-12">
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
     );
   }
 }

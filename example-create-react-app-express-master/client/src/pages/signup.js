@@ -3,6 +3,7 @@ import API from "../utils/API";
 import {
 Link
 } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 
 const styles = {
@@ -76,6 +77,9 @@ class Signup extends Component {
   };
 
   render() {
+    if( this.state.id && this.state.payed && (this.state.type === 'player' || 'university')){
+      return (<Redirect to={'/profile/'+this.state.id} />)
+    }
     return (
       <div>
         <header style={styles.header}>
@@ -85,9 +89,6 @@ class Signup extends Component {
         <h1 style={styles.text}>Esports Scouting Services</h1>
         {this.state.id && !this.state.payed && this.state.type === '' ? (
           <div>
-            <h2 style={styles.text}>
-              Are you a boy or a girl?
-            </h2>
             <button style={styles.button} onClick={() => this.updateTypePlayer()}>Player</button>
             <button style={styles.button} onClick={() => this.updateTypeUniversity()}>University</button>
           </div>
@@ -97,21 +98,16 @@ class Signup extends Component {
             <h2 style={styles.text}>
               Payment Information: 
             </h2>
-            <button style={styles.button} onClick={() => this.comeBackToThis()}>yes to paid</button>
-          </div>) : 
-        this.state.id && this.state.payed && (this.state.type === 'player' || 'university') ? (
-          <Link to={'/profile/' + this.state.id}>
-            <button style={styles.button} onClick={() => this.updateUser(this.state.id, { type: this.state.type, payed: this.state.payed})}>
-              next
-            </button>
-          </Link>) : 
+            <button style={styles.button} onClick={() => this.comeBackToThis()}>Submit</button>
+          </div>): 
         (
           <div>
+            Please sign in to access this site
           </div>
         )}
-        <button onClick={() => this.pressMe()}> 
+        {/* <button onClick={() => this.pressMe()}> 
           press me
-        </button>
+        </button> */}
       </div>
     );
   }
