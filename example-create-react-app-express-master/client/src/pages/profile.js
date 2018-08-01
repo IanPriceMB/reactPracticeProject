@@ -5,12 +5,67 @@ import {Link} from 'react-router-dom'
 
 
 const styles = {
-    img: {
-        maxWidth: 100,
-        margin: '0 auto',
-        display: 'block'
-    }
-  }
+  img: {
+      maxWidth: 100,
+      margin: '0 auto',
+      display: 'block'
+  }, 
+  ul: {
+    listStyleType: 'none'
+  },
+  header: {
+      width: '100%',
+      float: 'left'
+  }, 
+  signout: {
+      padding: 5, 
+      float: 'right'
+  },
+  span: {
+      padding: 5, 
+      float: 'left'
+  },
+  button: {
+      backgroundColor: 'blue', 
+      padding: "5 10",
+      color: 'white',
+      border: 'none',
+      margin: '0px 10px',
+      fontSize: '1em'
+  }, 
+  button2: {
+      display: 'block',
+      backgroundColor: 'blue', 
+      borderRadius: 10,
+      padding: '10px 30px',
+      color: 'white',
+      border: 'none',
+      margin: '30px',
+      fontSize: '2em'
+    }, 
+  text: {
+      textAlign: 'center',
+  },
+  nav: {
+      width: '10%',
+      height: '5000px',
+      float: 'left'
+  },
+  form: {
+      float: 'left',
+      display: 'block',
+      margin: '40px 0px',
+      paddingLeft: '30%',
+      fontSize: '1.5em'
+  },
+  discovered: {
+      float: 'left',
+      display: 'block',
+      margin: '40px 0px',
+      paddingLeft: '10%',
+      fontSize: '1.5em'
+  },
+}
 
 class Profile extends Component {
   state = {
@@ -139,22 +194,22 @@ class Profile extends Component {
           SchoolState: this.state.user.SchoolState,
           Statement: this.state.user.Statement,
           offeredGames: {
-              HeroesOfTheStorm: this.state.user.offeredGames.HeroesOfTheStorm,
-              Overwatch: this.state.user.offeredGames.Overwatch,
-              Fortnite: this.state.user.offeredGames.Fortnite,
-              PUBG: this.state.user.offeredGames.PUBG,
-              DOTA2: this.state.user.offeredGames.DOTA2,
-              LeagueOfLegends: this.state.user.offeredGames.leagueOfLegends,
-              CounterStrike: this.state.user.offeredGames.CounterStrike,
-              Starcraft2: this.state.user.offeredGames.Starcraft2,
-              Hearthstone: this.state.user.offeredGames.HearthStone,
-              SuperSmashBros: this.state.user.offeredGames.SmashSuperBros,
-              StreetFighter: this.state.user.offeredGames.StreetFighter,
-              Halo: this.state.user.offeredGames.Halo,
-              Rainbow6: this.state.user.offeredGames.Rainbow6,
-              Warcraft3: this.state.user.offeredGames.Warcraft3,
-              Smite: this.state.user.offeredGames.Smite,
-              MagicTheGathering: this.state.user.offeredGames.MagicTheGathering
+              HeroesOfTheStorm: this.state.user.HeroesOfTheStorm,
+              Overwatch: this.state.user.Overwatch,
+              Fortnite: this.state.user.Fortnite,
+              PUBG: this.state.user.PUBG,
+              DOTA2: this.state.user.DOTA2,
+              LeagueOfLegends: this.state.user.LeagueOfLegends,
+              CounterStrike: this.state.user.CounterStrike,
+              Starcraft2: this.state.user.Starcraft2,
+              Hearthstone: this.state.user.HearthStone,
+              SuperSmashBros: this.state.user.SmashSuperBros,
+              StreetFighter: this.state.user.StreetFighter,
+              Halo: this.state.user.Halo,
+              Rainbow6: this.state.user.Rainbow6,
+              Warcraft3: this.state.user.Warcraft3,
+              Smite: this.state.user.Smite,
+              MagicTheGathering: this.state.user.MagicTheGathering
           } 
         })
         .then(res => console.log(res))
@@ -173,14 +228,14 @@ class Profile extends Component {
     games[id][name] = value
     this.setState({games});
   };
+
   pressMe = () => {
     console.log(this.state)
   }
   trueFalse = (name, v) => {
-      let user = {...this.state.user}
-      user[name] = v
-    this.setState({user
-    })
+    let user = {...this.state.user}
+    user[name] = v
+    this.setState({user})
   }
   discoverUniversities = event => {
       event.preventDefault();
@@ -198,7 +253,7 @@ class Profile extends Component {
   render() {
     return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Esports Scouting Services</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" >
           <span class="navbar-toggler-icon"></span>
@@ -209,7 +264,7 @@ class Profile extends Component {
               <a class="nav-link" onClick={() => this.locationHandler('profile')} >Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onClick={() => this.locationHandler('Discover')} >Discover</a>
+              <a class="nav-link" onClick={() => this.locationHandler('discover')} >Discover</a>
             </li>
           </ul>
           <span class="navbar-text">
@@ -261,7 +316,149 @@ class Profile extends Component {
           ))}
         </div>
         <button onClick={this.handleFormSubmit} type="submit" class="btn btn-primary">Submit</button>
-      </form>):(<div> log in to see this page</div>)}
+      </form>) : this.state.user._id === this.props.match.params.id && this.state.user.type === 'university' && this.state.location==='profile' ?(
+      <form class='container'>
+        <div class='row'>
+          <div class="form-group col-2">
+            <label for="SchoolName">School Name</label>
+            <input onChange={this.handleInputChange} type="input" class="form-control" name='firstName' id="SchoolName" placeholder="University of Denver" />
+          </div>
+          <div class="form-group col-2">
+            <label for="Coach">Coach Name</label>
+            <input onChange={this.handleInputChange} type="input" class="form-control" name='lastName' id="Coach" placeholder="Max Walters" />
+          </div>
+          <div class="form-group col-2">
+            <label for="ScoutName">Scout Name</label>
+            <input onChange={this.handleInputChange} type="input" class="form-control" name='ScoutName' id="ScoutName" placeholder="Barry White" />
+          </div>
+          <div class="form-group col-2">
+            <label for="SchoolEmail">School Email</label>
+            <input onChange={this.handleInputChange} type="input" class="form-control" name='SchoolEmail' id="SchoolEmail" placeholder="example@example.com" />
+          </div>
+          <div class="form-group col-2">
+            <label for="SchoolState">School State</label>
+            <input onChange={this.handleInputChange} type="input" class="form-control" name='SchoolState' id="SchoolState" placeholder="CO" />
+          </div>
+          <div class="form-group col-2">
+            <label for="SchoolCity">School City</label>
+            <input onChange={this.handleInputChange} type="input" class="form-control" name='state' id="SchoolCity" placeholder="Denver" />
+          </div>
+          <div class="form-group col-12">
+            <label for="Statement">Statement</label>
+            <textarea onChange={this.handleInputChange} name='Statement' class="form-control" id="Statement" rows="3"></textarea>
+          </div>
+        </div>
+        <div class='row'>
+        <h3 class='col-12'>Select which games you offer</h3>
+          {Object.keys(this.state.user.offeredGames).map((game, i) => (
+            <div key={i} class="col-3">           
+              <h3> {game.split(/(?=[A-Z])/)} </h3>
+              <div class='container-fluid'>
+                <div class='row'>
+                  <button class='btn btn-info col-5' type='button' onClick={() => this.trueFalse(game, true)}>Yes</button>
+                  <div class='col-2' />
+                  <button class='btn btn-info col-5' type='button' onClick={() => this.trueFalse(game, false)}>No</button>  
+                </div>
+              </div>      
+            </div>
+          ))}
+        </div>
+        <div class='row justify-content-center'>
+          <button onClick={this.handleFormSubmit} type="submit" class="btn btn-success col-3">Submit</button>
+        </div>
+      </form>
+      ) : 
+      this.state.user._id === this.props.match.params.id && this.state.user.type === 'player' && this.state.location==='discover' ? (
+        <div>
+        <button class='btn btn-info' type='submit' onClick={this.discoverPlayers}>Discover</button>
+      <div class='container'>
+      <div class='row'>
+      {this.state.discovers.length ? (
+      <ul style={styles.ul} class='col-12 container'>
+      <div class='row'>
+        {this.state.discovers.map((discovered, j) => (          
+          <li class='col-12 container' key={j}>
+            <h1>
+              <strong>
+                {discovered.schoolName}: {discovered.SchoolCity}, {discovered.schoolState} <br />
+              </strong>
+            </h1>
+            <span class='col-4'>Head coach: {discovered.Coach}</span> 
+            <span class='col-4'>Lead Scout: {discovered.ScoutName}</span> 
+            <span class='col-4'>School Statement: {discovered.Statement}</span>
+            <h3>Esports available on campus</h3>
+              <div class='row'>
+              <ul style={styles.ul} class='col-12 container'>
+              <div class='row'>
+                {Object.keys(discovered.games).map(game => (
+                  <li class='col-4' key={game}>
+                    {game.gamerTag !== '' ? (
+                      <ul style={styles.ul}>
+                        <h3>{game}</h3>
+                        {Object.keys(discovered.games[game]).map((option, i) => (
+                          <li key={i}>{option}: {discovered.games[game][option]}</li>
+                        ))}
+                      </ul>
+                    ):(<div></div>)}
+                  </li>))}
+              </div>
+              </ul>
+              </div>
+              <br />
+          </li>
+        ))}
+      </div>
+      </ul>) : ( <div></div>)}
+      </div>
+      </div>
+      </div>
+      ) :
+      this.state.user._id === this.props.match.params.id && this.state.user.type === 'university' && this.state.location==='discover' ? (
+      <div>
+        <button class='btn btn-info' type='submit' onClick={this.discoverPlayers}>Discover</button>
+      <div class='container'>
+      <div class='row'>
+      {this.state.discovers.length ? (
+      <ul style={styles.ul} class='col-12 container'>
+      <div class='row'>
+        {this.state.discovers.map((discovered, j) => (          
+          <li class='col-12 container' key={j}>
+            <h1>
+              <strong>
+                {discovered.firstName} "{discovered.games.CounterStrike.GamerTag}" {discovered.lastName} <br />
+              </strong>
+            </h1>
+            <span class='col-4'>Age: {discovered.age}</span> 
+            <span class='col-4'>City: {discovered.city}</span> 
+            <span class='col-4'>State: {discovered.state}</span>
+              <h3>Games Played</h3>
+              <div class='row'>
+              <ul style={styles.ul} class='col-12 container'>
+              <div class='row'>
+                {Object.keys(discovered.games).map(game => (
+                  <li class='col-4' key={game}>
+                    {game.gamerTag !== '' ? (
+                      <ul style={styles.ul}>
+                        <h3>{game}</h3>
+                        {Object.keys(discovered.games[game]).map((option, i) => (
+                          <li key={i}>{option}: {discovered.games[game][option]}</li>
+                        ))}
+                      </ul>
+                    ):(<div></div>)}
+                  </li>))}
+              </div>
+              </ul>
+              </div>
+              <br />
+          </li>
+        ))}
+      </div>
+      </ul>) : ( <div></div>)}
+      </div>
+      </div>
+      </div>
+      )
+      :(<div> log in to see this page</div>)}
  <button onClick={() => this.pressMe()}> 
    press me
  </button>

@@ -63,7 +63,7 @@ const userSchema = new Schema({
         HearthStone: {
             GamerTag: { type: String, default: '' },
             Rank: { type: String, default: '' },
-            PreferedClasses: { type: Array, default: []}
+            PreferedClasses: { type: String, default: ''}
         },
         SuperSmashBros: {
             GamerTag: { type: String, default: '' },
@@ -108,6 +108,7 @@ const userSchema = new Schema({
     SchoolCity: { type: String, default: '' },
     SchoolState: { type: String, default: '' },
     Statement: {type: String, defautlt: ''},
+    SchoolEmail: {type: String, defautlt: ''},
     offeredGames: {
         HeroesOfTheStorm: {type: Boolean, default: false},
         Overwatch: {type: Boolean, default: false},
