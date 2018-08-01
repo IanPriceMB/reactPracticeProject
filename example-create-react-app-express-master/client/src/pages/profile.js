@@ -30,7 +30,7 @@ class Profile extends Component {
   locationHandler = local => {
       this.setState({location: local});
   }
-  handlePlayerFormSubmit = event => {
+  handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.user.firstName && this.state.user.lastName) {
         API.updateUser( this.state.user._id, {
@@ -131,24 +131,31 @@ class Profile extends Component {
                 Rank: this.state.user.games.Warcraft3.Rank,
                 PrimaryRace: this.state.user.games.Warcraft3.PrimaryRace 
               }
+          },
+          SchoolName: this.state.user.SchoolName,
+          ScoutName: this.state.user.ScoutName,
+          Coach: this.state.user.CoachName,
+          SchoolCity: this.state.user.SchoolCity,
+          SchoolState: this.state.user.SchoolState,
+          Statement: this.state.user.Statement,
+          offeredGames: {
+              HeroesOfTheStorm: this.state.user.offeredGames.HeroesOfTheStorm,
+              Overwatch: this.state.user.offeredGames.Overwatch,
+              Fortnite: this.state.user.offeredGames.Fortnite,
+              PUBG: this.state.user.offeredGames.PUBG,
+              DOTA2: this.state.user.offeredGames.DOTA2,
+              LeagueOfLegends: this.state.user.offeredGames.leagueOfLegends,
+              CounterStrike: this.state.user.offeredGames.CounterStrike,
+              Starcraft2: this.state.user.offeredGames.Starcraft2,
+              Hearthstone: this.state.user.offeredGames.HearthStone,
+              SuperSmashBros: this.state.user.offeredGames.SmashSuperBros,
+              StreetFighter: this.state.user.offeredGames.StreetFighter,
+              Halo: this.state.user.offeredGames.Halo,
+              Rainbow6: this.state.user.offeredGames.Rainbow6,
+              Warcraft3: this.state.user.offeredGames.Warcraft3,
+              Smite: this.state.user.offeredGames.Smite,
+              MagicTheGathering: this.state.user.offeredGames.MagicTheGathering
           } 
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-      }
-  };
-  handleUniversityFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.user.schoolName) {
-        API.updateUser( this.state.user._id, {
-            schoolName: this.state.user.schoolName,
-            scoutName: this.state.user.scoutName,
-            coach: this.state.user.coach,
-            heroesOfTheStormOffered: this.state.user.heroesOfTheStormOffered,
-            overwatchOffered: this.state.user.overwatchOffered,
-            leagueOfLegendsOffered: this.state.user.leagueOfLegendsOffered,
-            schoolCity: this.state.user.schoolCity,
-            schoolState: this.state.user.schoolState,
         })
         .then(res => console.log(res))
         .catch(err => console.log(err));
@@ -156,7 +163,6 @@ class Profile extends Component {
   };
   handleInputChange = event => {
     const { name, value } = event.target;
-    console.log(name)
     let user = {...this.state.user}
     user[name] = value
     this.setState({user});
@@ -211,7 +217,7 @@ class Profile extends Component {
           </span>
         </div>
       </nav>
-      {this.state.user.games ? (
+      {this.state.user._id === this.props.match.params.id && this.state.user.type === 'player' && this.state.location==='profile' ? (
       <form class='container'>
         <div class='row'>
         <div class="form-group col-2">
@@ -254,7 +260,7 @@ class Profile extends Component {
             </div>
           ))}
         </div>
-        <button onClick={this.handlePlayerFormSubmit} type="submit" class="btn btn-primary">Submit</button>
+        <button onClick={this.handleFormSubmit} type="submit" class="btn btn-primary">Submit</button>
       </form>):(<div> log in to see this page</div>)}
  <button onClick={() => this.pressMe()}> 
    press me

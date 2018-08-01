@@ -77,9 +77,6 @@ class Signup extends Component {
   };
 
   render() {
-    if( this.state.id && this.state.payed && (this.state.type === 'player' || 'university')){
-      return (<Redirect to={'/profile/'+this.state.id} />)
-    }
     return (
       <div>
         <header style={styles.header}>
@@ -99,10 +96,14 @@ class Signup extends Component {
               Payment Information: 
             </h2>
             <button style={styles.button} onClick={() => this.comeBackToThis()}>Submit</button>
-          </div>): 
+          </div>) : this.state.id && this.state.payed && (this.state.type === 'player' || 'university') ? (
+          <Link to={'/profile/' + this.state.id}>
+            <button style={styles.button} onClick={() => this.updateUser(this.state.id, { type: this.state.type, payed: this.state.payed})}>
+              next
+            </button>
+          </Link>) : 
         (
           <div>
-            Please sign in to access this site
           </div>
         )}
         {/* <button onClick={() => this.pressMe()}> 
